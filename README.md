@@ -33,11 +33,13 @@ The primary dataset (`finacial_regression.csv`) comprises **3,904 daily trading 
 ```mermaid
 flowchart TD
     A["Raw Multi-Asset Data<br><b>(3,904 × 63)</b>"] --> B["Feature Engineering<br><i>Log Returns, Realized Volatility, Cyclical Ratios</i>"]
-    B --> C["Stationary Target Definition<br><b>r_t = ln(P_t / P_t-1)</b> & <b>Target_Direction (Up/Down)</b>"]
+    B --> C["Stationary Target Definition<br><b>r_t = ln(P_t / P_t-1)</b> & <b>Target_Direction</b>"]
     C --> D["Purged & Embargoed Walk-Forward CV<br><b>4-Yr Rolling Train | 1-Day Purge | 1-Day Embargo | 1-Yr Test</b>"]
     
     D --> E["Regression Pipeline<br>• Linear Regression<br>• Random Forest<br>• GBRT<br>• XGBoost"]
     D --> F["Classification Pipeline<br>• Logistic Regression<br>• Random Forest<br>• XGBoost"]
+```
+
 ### Financial Validation Scheme
 Standard random cross-validation invalidates financial time series by testing on historical data trained on future signals. We implemented an expanding/rolling window generator:
 - **Training Window:** 4 years rolling history.
