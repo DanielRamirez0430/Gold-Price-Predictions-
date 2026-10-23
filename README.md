@@ -6,7 +6,7 @@ An end-to-end predictive machine learning framework analyzing precious metals, m
 
 ## Overview
 Predicting raw financial asset prices often leads to spurious regression fit and target leakage due to non-stationarity and random-walk properties. This project develops a robust quantitative machine learning workflow designed to:
-1. **Prevent Target Leakage & Autocorrelation Bias:** Reframe the objective from non-stationary raw closing prices ($P_t$) to stationary log returns ($r_t = \ln(P_t / P_{t-1})$) and discrete directional movement ($y_t \in \{0, 1\}$).
+1. **Prevent Target Leakage & Autocorrelation Bias:** Reframe the objective from non-stationary raw closing prices ($P_t$) to stationary log returns $r_t$ = $\ln(P_t / P_{t-1})$ and discrete directional movement ($y_t \in \{0, 1\}$).
 2. **Implement Financial Cross-Validation:** Replace standard K-Fold shuffle CV with a strictly chronological, **Purged and Embargoed Walk-Forward** split to eliminate lookahead bias.
 3. **Benchmark Classical vs. Gradient Boosted Architectures:** Evaluate baseline persistence against Linear Regression, Random Forest, GBRT, and XGBoost models.
 
@@ -32,7 +32,7 @@ The primary dataset (`finacial_regression.csv`) comprises **3,904 daily trading 
 
 ```mermaid
 flowchart TD
-    A["Raw Multi-Asset Data<br><b>(3,904 × 63)</b>"] --> B["Feature Engineering<br><i>Log Returns, Realized Volatility, Cyclical Ratios</i>"]
+    A["Raw Multi-Asset Data<br><b>(3,904 × 47)</b>"] --> B["Feature Engineering<br><i>Log Returns, Realized Volatility, Cyclical Ratios</i>"]
     B --> C["Stationary Target Definition<br><b>r_t = ln(P_t / P_t-1)</b> & <b>Target_Direction</b>"]
     C --> D["Purged & Embargoed Walk-Forward CV<br><b>4-Yr Rolling Train | 1-Day Purge | 1-Day Embargo | 1-Yr Test</b>"]
     
