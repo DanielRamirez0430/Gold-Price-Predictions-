@@ -74,16 +74,20 @@ Gold-Price-Predictions-/
 1. Regression Performance (Raw vs. Stationary Returns)
 Raw Dollar Price Formulation: Models achieved misleadingly low Relative Error metrics (e.g., R^2 >0.95, low dollar MAE) driven entirely by strong unit-root autocorrelation rather than genuine predictive signal.
 Stationary Log Return Formulation: Evaluating stationary returns reveals true market efficiency constraints:
+
 Model Architecture,Out-of-Sample MAE,Out-of-Sample MSE,Directional Sign Alignment
+
 Naïve Baseline (rt−1​),0.0078,0.00012,49.8%
 Linear Regression,0.0074,0.00010,50.4%
 Random Forest Regressor,0.0072,0.00009,51.1%
 Gradient Boosted Trees (GBRT),0.0071,0.00009,51.5%
 XGBoost Regressor,0.0069,0.00008,52.2%
 
-2. Directional Classification (Target_Direction)
+3. Directional Classification (Target_Direction)
 Predicting binary daily price movement (Up vs. Down) using stationary feature inputs under nested purged cross-validation:
+
 Classifier,Accuracy,Precision,Recall,ROC-AUC
+
 Zero-Rate / Random Baseline,50.0%,50.0%,50.0%,0.500
 Logistic Regression (L2),51.2%,51.0%,52.4%,0.518
 Random Forest Classifier,51.8%,51.7%,53.1%,0.524
